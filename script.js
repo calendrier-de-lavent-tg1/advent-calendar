@@ -5,6 +5,9 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbze6o-6VO-NSqDIthSS0
 
 const jours = [1,2,3,4,5,8,9,10,11,12,15,16,17,18,19];
 
+// MODE TEST — Ouvre tous les jours
+const today = new Date(2025, 11, 19, 12, 0, 0); 
+
 const enigmes = {
   1:"Je commence la journée sans effort et termine souvent en musique. Qui suis-je ?",
   2:"Qu’est-ce qui a des clés mais n’ouvre aucune porte ?",
