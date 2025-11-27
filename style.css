@@ -4,25 +4,42 @@
   --white: #ffffff;
 }
 
-/* reset */
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
 body{
   font-family:"Poppins",sans-serif;
   background: url("fond-noel.jpg") center/cover no-repeat fixed;
   color:white;
 }
 
-/* légère obscurité pour lisibilité */
 body::after{
   content:"";
-  position:fixed; inset:0;
+  position:fixed;
+  inset:0;
   background:rgba(0,0,0,0.22);
   pointer-events:none;
 }
 
-.stage{padding:30px 10px; text-align:center;}
-.title{font-size:32px; color:var(--gold); margin-bottom:5px; text-shadow:0 3px 10px #000;}
-.subtitle{opacity:.9; margin-bottom:20px;}
+.stage{
+  padding:30px 10px;
+  text-align:center;
+}
+
+.title{
+  font-size:32px;
+  color:var(--gold);
+  margin-bottom:5px;
+  text-shadow:0 3px 10px #000;
+}
+
+.subtitle{
+  opacity:.9;
+  margin-bottom:20px;
+}
 
 .scene{
   position:relative;
@@ -31,7 +48,7 @@ body::after{
   width:100%;
 }
 
-/* flocons */
+/* FLAKES = BUBBLES */
 .flake{
   width:120px;
   height:120px;
@@ -40,8 +57,10 @@ body::after{
   display:flex;
   align-items:center;
   justify-content:center;
+
   background: radial-gradient(white, #d3e9ff 40%, rgba(255,255,255,0.4));
   box-shadow:0 12px 30px rgba(0,0,0,0.4);
+
   cursor:pointer;
   animation: floaty 6s ease-in-out infinite;
   transition:.25s;
@@ -59,15 +78,18 @@ body::after{
   font-weight:800;
 }
 
-/* états */
-.flake.trop-tot{opacity:0.45;}
+/* États */
+.flake.trop-tot{opacity:0.48;}
 .flake.trop-tot::after{
   content:"Trop tôt";
   position:absolute;
-  bottom:-18px; left:50%;
+  bottom:-18px;
+  left:50%;
   transform:translateX(-50%);
-  font-size:12px; background:rgba(0,0,0,0.45);
-  padding:2px 6px; border-radius:8px;
+  font-size:12px;
+  background:rgba(0,0,0,0.45);
+  padding:2px 6px;
+  border-radius:8px;
 }
 
 .flake.passe{
@@ -77,51 +99,65 @@ body::after{
 .flake.passe::after{
   content:"Passé";
   position:absolute;
-  bottom:-18px; left:50%;
-  transform:translateX(-50%);
-  font-size:12px; background:rgba(0,0,0,0.45);
-  padding:2px 6px; border-radius:8px;
+  bottom:-18px;
 }
-
 .flake:hover{
   transform:scale(1.07);
   box-shadow:0 18px 40px rgba(0,0,0,0.6);
 }
 
-/* modal */
+/* MODAL */
 .modal{
-  position:fixed; inset:0;
-  display:flex; align-items:center; justify-content:center;
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   background:rgba(0,0,0,0.5);
 }
-.hidden{display:none!important}
+
+.hidden{display:none!important;}
 
 .modal-card{
   background:white;
-  width:90%; max-width:420px;
+  width:90%;
+  max-width:420px;
   padding:20px;
   border-radius:12px;
+  color:black;
   box-shadow:0 20px 50px rgba(0,0,0,0.5);
   position:relative;
 }
 
 .modal-close{
-  position:absolute; top:8px; right:8px;
-  border:none; background:none; font-size:20px;
+  position:absolute;
+  top:8px;
+  right:8px;
+  border:none;
+  background:none;
+  font-size:20px;
   cursor:pointer;
 }
 
 .modal-card input{
-  width:100%; padding:10px;
-  border:1px solid #d8d8d8; border-radius:8px;
+  width:100%;
+  padding:10px;
+  border:1px solid #d8d8d8;
+  border-radius:8px;
   margin-bottom:10px;
 }
 
 .btn{
-  background:var(--accent); color:white;
-  border:none; padding:10px 17px;
-  border-radius:8px; cursor:pointer;
+  background:var(--accent);
+  color:white;
+  border:none;
+  padding:10px 17px;
+  border-radius:8px;
+  cursor:pointer;
   font-weight:bold;
 }
 
-.modal-msg{color:#cc0000; font-size:14px;}
+.modal-msg{
+  color:#cc0000;
+  font-size:14px;
+}
