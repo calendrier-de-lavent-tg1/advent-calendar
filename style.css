@@ -161,3 +161,14 @@ body::after{
   color:#cc0000;
   font-size:14px;
 }
+/* Version mobile */
+@media (max-width: 600px) {
+  .flake {
+    width: 55px;
+    height: 55px;
+  }
+
+  .num {
+    font-size: 1.3rem;
+  }
+}
