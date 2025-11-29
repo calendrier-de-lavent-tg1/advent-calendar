@@ -1,13 +1,11 @@
 ////////////////////////////
-// CONFIG
+// CONFIGURATION
 ////////////////////////////
+
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbze6o-6VO-NSqDIthSS0xocC5sspPm_q63lUe17QeWVHr8ptEF3cqtcNkbuuzreEfgsgg/exec";
 
-// MODE TEST → simule le 19 décembre
-const today = new Date(2025, 11, 19, 12, 0, 0);
-
 const jours = [1,2,3,4,5,8,9,10,11,12,15,16,17,18,19];
- 
+
 const enigmes = {
   1:"Je commence la journée sans effort et termine souvent en musique. Qui suis-je ?",
   2:"Qu’est-ce qui a des clés mais n’ouvre aucune porte ?",
@@ -26,7 +24,7 @@ const enigmes = {
   19:"Énigme 19..."
 };
 
-// positions visuelles
+// positions des flocons
 const positions = [
   {left:"10%", top:"8%"},
   {left:"78%", top:"10%"},
@@ -46,175 +44,173 @@ const positions = [
 ];
 
 ////////////////////////////
-// INIT SCÈNE
+// MODE TEST / MODE ADMIN
 ////////////////////////////
+
+// true = permet de simuler un jour
+const MODE_TEST = true;
+
+// jour simulé par défaut si MODE_TEST = true
+let jourSimule = 5;
+
+// mode admin (touche "A")
+document.addEventListener("keydown", (e)=>{
+  if(e.key === "A"){
+    const j = prompt("Jour à simuler ?");
+    if(j && !isNaN(j)){
+      jourSimule = parseInt(j);
+      alert("Simulation du jour " + jourSimule);
+    }
+  }
+});
+
+// retourne la date du jour réel ou simulé
+function getAujourdhui(){
+  const now = new Date();
+  if(MODE_TEST){
+    return new Date(now.getFullYear(), 11, jourSimule, 12, 0, 0);
+  }
+  return now;
+}
+
+let aujourdHui = getAujourdhui();
+const annee = aujourdHui.getFullYear();
+const mois = 11; // décembre
+
+////////////////////////////
+// CRÉATION SCÈNE
+////////////////////////////
+
 const scene = document.getElementById("scene");
+let jourOuvert = null;
 
-// ----- MODE TEST -----
-// Mets TEST_MODE = true pour simuler n’importe quel jour
-const TEST_MODE = true;
+jours.forEach((jour, i) => {
 
-// Mets ici le jour que tu veux simuler (1,2,3,...19)
-const SIMULATED_DAY = 5;
+  const fl = document.createElement("div");
+  fl.className = "flake";
+  fl.style.left = positions[i].left;
+  fl.style.top = positions[i].top;
+  fl.style.animation = `floaty ${5 + (i%3)}s ease-in-out infinite`;
 
-// ----------------------
+  fl.dataset.jour = jour;
 
-const realToday = new Date();
-
-const today = TEST_MODE
-  ? new Date(realToday.getFullYear(), 11, SIMULATED_DAY, 12, 0, 0)
-  : realToday;
-
-
-const year = today.getFullYear();
-const month = 11; // décembre
-
-let openedDay = null;
-
-// création flocons
-jours.forEach((day,i)=>{
-  const fl=document.createElement("div");
-  fl.className="flake";
-  fl.style.left=positions[i].left;
-  fl.style.top=positions[i].top;
-  fl.style.animation=`floaty ${5+(i%3)}s ease-in-out infinite`;
-
-  fl.dataset.day=day;
-
-  const num=document.createElement("div");
-  num.className="num";
-  num.textContent=day;
+  const num = document.createElement("div");
+  num.className = "num";
+  num.textContent = jour;
   fl.appendChild(num);
 
-  const dCase = new Date(year,month,day,12,0,0);
+  const dateCase = new Date(annee, mois, jour, 12, 0, 0);
+  aujourdHui = getAujourdhui();
 
-  if(today < dCase){
+  if(aujourdHui < dateCase){
     fl.classList.add("trop-tot");
-  } else if(today.toDateString() !== dCase.toDateString()){
+  } else if(aujourdHui.toDateString() !== dateCase.toDateString()){
     fl.classList.add("passe");
   }
 
-  fl.addEventListener("click",()=> onFlake(day));
+  fl.addEventListener("click",()=> ouvrirCase(jour));
   scene.appendChild(fl);
 });
 
 ////////////////////////////
-// MODAL + FLOW
+// MODAL + LOGIQUE
 ////////////////////////////
-const modal=document.getElementById("modal");
-const stepName=document.getElementById("step-name");
-const stepEnigme=document.getElementById("step-enigme");
-const stepDone=document.getElementById("step-done");
-const modalClose=document.getElementById("modal-close");
-const doneClose=document.getElementById("done-close");
 
-const inputName=document.getElementById("input-name");
-const inputAnswer=document.getElementById("input-answer");
+const modal = document.getElementById("modal");
+const etapeNom = document.getElementById("step-name");
+const etapeEnigme = document.getElementById("step-enigme");
+const etapeFini = document.getElementById("step-done");
 
-const msg1=document.getElementById("modal-msg");
-const msg2=document.getElementById("modal-msg-2");
+const fermer1 = document.getElementById("modal-close");
+const fermer2 = document.getElementById("done-close");
+fermer1.onclick = ()=> modal.classList.add("hidden");
+fermer2.onclick = ()=> modal.classList.add("hidden");
 
-const titreEnigme=document.getElementById("modal-title-enigme");
-const enigmeText=document.getElementById("enigme-text");
+const inputNom = document.getElementById("input-name");
+const inputRep = document.getElementById("input-answer");
 
-modalClose.onclick=()=>modal.classList.add("hidden");
-doneClose.onclick=()=>modal.classList.add("hidden");
+const msgNom = document.getElementById("modal-msg");
+const msgRep = document.getElementById("modal-msg-2");
 
-function onFlake(day){
-  const dateCase = new Date(year,month,day,12,0,0);
+const titre = document.getElementById("modal-title-enigme");
+const texteEnigme = document.getElementById("enigme-text");
 
-  if(today < dateCase){
+function ouvrirCase(jour){
+  const dateCase = new Date(annee, mois, jour, 12, 0, 0);
+  aujourdHui = getAujourdhui();
+
+  if(aujourdHui < dateCase){
     alert("Trop tôt !");
     return;
   }
 
-  if(today.toDateString() !== dateCase.toDateString()){
+  if(aujourdHui.toDateString() !== dateCase.toDateString()){
     alert("Jour passé.");
     return;
   }
 
-  openedDay=day;
-  inputName.value="";
-  inputAnswer.value="";
-  msg1.textContent="";
-  msg2.textContent="";
+  jourOuvert = jour;
 
-  stepName.classList.remove("hidden");
-  stepEnigme.classList.add("hidden");
-  stepDone.classList.add("hidden");
+  inputNom.value = "";
+  inputRep.value = "";
+  msgNom.textContent = "";
+  msgRep.textContent = "";
+
+  etapeNom.classList.remove("hidden");
+  etapeEnigme.classList.add("hidden");
+  etapeFini.classList.add("hidden");
 
   modal.classList.remove("hidden");
 }
 
-document.getElementById("to-enigme").onclick=()=>{
-  if(!inputName.value.trim()){
-    msg1.textContent="Entre ton nom.";
+// Passe à l’énigme
+document.getElementById("to-enigme").onclick = () => {
+  if(!inputNom.value.trim()){
+    msgNom.textContent = "Entre ton nom.";
     return;
   }
 
-  msg1.textContent="";
-  stepName.classList.add("hidden");
-  stepEnigme.classList.remove("hidden");
+  etapeNom.classList.add("hidden");
+  etapeEnigme.classList.remove("hidden");
 
-  titreEnigme.textContent=`Jour ${openedDay}`;
-  enigmeText.textContent=enigmes[openedDay];
+  titre.textContent = `Jour ${jourOuvert}`;
+  texteEnigme.textContent = enigmes[jourOuvert];
 };
 
-document.getElementById("send-answer").onclick=async ()=>{
-  if(!inputAnswer.value.trim()){
-    msg2.textContent="Entre une réponse.";
+// Envoi de la réponse
+document.getElementById("send-answer").onclick = async () => {
+
+  if(!inputRep.value.trim()){
+    msgRep.textContent = "Entre une réponse.";
     return;
   }
 
   const payload = {
-    name: inputName.value.trim(),
-    day: openedDay,
-    answer: inputAnswer.value.trim()
+    name: inputNom.value.trim(),
+    day: jourOuvert,
+    answer: inputRep.value.trim()
   };
 
   try{
-    const res = await fetch(SCRIPT_URL,{
+    const res = await fetch(SCRIPT_URL, {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(payload)
     });
+
     const data = await res.json();
 
-    if(data.status==="already"){
-      msg2.textContent="Tu as déjà répondu.";
+    if(data.status === "already"){
+      msgRep.textContent = "Tu as déjà répondu.";
       return;
     }
 
-    if(data.status==="ok"){
-      stepEnigme.classList.add("hidden");
-      stepDone.classList.remove("hidden");
+    if(data.status === "ok"){
+      etapeEnigme.classList.add("hidden");
+      etapeFini.classList.remove("hidden");
     }
-  } catch(e){
-    msg2.textContent="Erreur de connexion.";
+
+  }catch(e){
+    msgRep.textContent = "Erreur de connexion.";
   }
 };
-// =========================
-// MODE ADMIN SECRET
-// =========================
-let simulatedDay = null;
-
-document.addEventListener("keydown", (e)=>{
-  if(e.key === "A"){ 
-    const d = prompt("Jour à simuler ? (1-24)");
-    if(d && !isNaN(d)){
-      simulatedDay = parseInt(d);
-      alert("Simu activée : Jour " + simulatedDay);
-    }
-  }
-});
-
-// remplace : const today = new Date();
-// par :
-let today = new Date();
-
-function getToday(){
-  if(simulatedDay !== null){
-    return new Date(year, month, simulatedDay, 12, 0, 0);
-  }
-  return new Date();
-}
