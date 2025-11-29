@@ -50,7 +50,21 @@ const positions = [
 ////////////////////////////
 const scene = document.getElementById("scene");
 
-// const today = new Date(); // désactivé pour tests
+// ----- MODE TEST -----
+// Mets TEST_MODE = true pour simuler n’importe quel jour
+const TEST_MODE = true;
+
+// Mets ici le jour que tu veux simuler (1,2,3,...19)
+const SIMULATED_DAY = 5;
+
+// ----------------------
+
+const realToday = new Date();
+
+const today = TEST_MODE
+  ? new Date(realToday.getFullYear(), 11, SIMULATED_DAY, 12, 0, 0)
+  : realToday;
+
 
 const year = today.getFullYear();
 const month = 11; // décembre
