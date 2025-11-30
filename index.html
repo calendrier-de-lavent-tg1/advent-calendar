@@ -8,12 +8,12 @@
   <!-- feuille de style -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- police optionnelle -->
+  <!-- police festive optionnelle -->
   <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
+ 
   <main class="stage">
     <h1 class="title">🎄 Calendrier de l'Avent — TG1 🎄</h1>
     <p class="subtitle">Clique sur ton flocon du jour (nom → énigme → réponse).</p>
@@ -24,14 +24,14 @@
 
   <!-- modal flow -->
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-card">
+    <div class="modal-card" role="document">
       <button id="modal-close" class="modal-close" aria-label="Fermer">✕</button>
 
       <!-- étape 1 : nom -->
       <div id="step-name" class="modal-step">
         <h2 id="modal-title">Entre ton nom</h2>
-        <input id="input-name" type="text" placeholder="Prénom Nom" autocomplete="name">
-        <p id="modal-msg" class="modal-msg"></p>
+        <input id="input-name" type="text" placeholder="Prénom Nom" autocomplete="name" />
+        <p id="modal-msg" class="modal-msg" aria-live="polite"></p>
         <div class="modal-actions">
           <button id="to-enigme" class="btn">Suivant</button>
         </div>
@@ -41,8 +41,8 @@
       <div id="step-enigme" class="modal-step hidden">
         <h2 id="modal-title-enigme"></h2>
         <p id="enigme-text"></p>
-        <input id="input-answer" type="text" placeholder="Ta réponse...">
-        <p id="modal-msg-2" class="modal-msg"></p>
+        <input id="input-answer" type="text" placeholder="Ta réponse..." />
+        <p id="modal-msg-2" class="modal-msg" aria-live="polite"></p>
         <div class="modal-actions">
           <button id="send-answer" class="btn">Envoyer</button>
         </div>
