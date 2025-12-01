@@ -350,8 +350,7 @@ document.getElementById("send-answer").onclick = async () => {
 };
   try {
     const res = await fetch(SCRIPT_URL, {
-      method: "POST",
-      // 🚨 ABSOLUMENT 'text/plain' pour éviter la requête OPTIONS qui échoue
+      method: "POST"
       headers: {"Content-Type":"text/plain"}, 
       body: JSON.stringify(payload)
     });
