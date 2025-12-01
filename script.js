@@ -47,42 +47,6 @@ const POSITIONS = [
   {left:"66%", top:"54%"}
 ];
 
-/* ========== MODE TEST & ADMIN ========== */
-/* true = mode test activé (simule jour+heure). Mets false en production */
-let MODE_TEST = false;
-/* jour et heure simulés (si MODE_TEST = true) */
-let JOUR_SIMULE = 5;    // change le jour ici pour tester (ou appuie sur "A")
-let HEURE_SIMULE = 12; // change l'heure simulée
-
-/* admin secret : appuie sur "A" pour saisir un jour (prompt) */
-document.addEventListener("keydown", (e) => {
-  if (e.key === "&") {
-    const j = prompt("Jour à simuler (1-24) — laisse vide pour désactiver");
-    if (j === null) return;
-    if (j.trim() === "") {
-      MODE_TEST = false;
-      alert("Mode test désactivé.");
-      window.location.reload();
-      return;
-    }
-    const jj = parseInt(j);
-    if (!isNaN(jj)) {
-      MODE_TEST = true;
-      JOUR_SIMULE = jj;
-      alert("Mode test activé → jour simulé : " + JOUR_SIMULE);
-      window.location.reload();
-    }
-  }
-});
-
-/* retourne un objet Date utilisé par le site (réel ou simulé) */
-function obtenirDateActuelle(){
-  const maintenant = new Date();
-  if (MODE_TEST) {
-    return new Date(maintenant.getFullYear(), 11, JOUR_SIMULE, HEURE_SIMULE, 0, 0);
-  }
-  return maintenant;
-}
 
 /* ========== INIT SCÈNE ========== */
 const scene = document.getElementById("scene");
