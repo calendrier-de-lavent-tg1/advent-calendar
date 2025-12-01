@@ -28,8 +28,6 @@ const ENIGMES = {
   19:"Énigme 19..."
 };
 const INDICES = {
-  1: "Indice : Il se trouve souvent… dans la salle des profs 😉",
-  2: "Indice : Pense à quelqu’un très discret… mais très efficace.",
   3: "Indice : Son style ne passe jamais inaperçu !",
   4: "Indice : Un déguisement… jaune peut-être ?",
   5: "Indice : Toujours entouré d’élèves.",
