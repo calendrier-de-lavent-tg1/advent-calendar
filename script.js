@@ -27,6 +27,23 @@ const ENIGMES = {
   18:"Énigme 18...",
   19:"Énigme 19..."
 };
+const INDICES = {
+  1: "Indice : Il se trouve souvent… dans la salle des profs 😉",
+  2: "Indice : Pense à quelqu’un très discret… mais très efficace.",
+  3: "Indice : Son style ne passe jamais inaperçu !",
+  4: "Indice : Un déguisement… jaune peut-être ?",
+  5: "Indice : Toujours entouré d’élèves.",
+  8: "Indice : Son bonnet est une légende.",
+  9: "Indice : On dit qu'il triche… ou pas 😭",
+  10: "Indice : Cherche du côté du bâtiment pastoral…",
+  11: "Indice : À compléter.",
+  12: "Indice : À compléter.",
+  15: "Indice : À compléter.",
+  16: "Indice : À compléter.",
+  17: "Indice : À compléter.",
+  18: "Indice : À compléter.",
+  19: "Indice : À compléter."
+};
 
 /* positions visuelles */
 const POSITIONS = [
