@@ -210,12 +210,14 @@ document.getElementById("send-answer").onclick = async () => {
   formData.append('jour', caseOuverte);
   formData.append('reponse', inputReponse.value.trim());
 
+  // ... dans la fonction send-answer.onclick
   try {
-    // 2. Utiliser fetch avec FormData : le navigateur gère l'encodage et les headers.
     const res = await fetch(SCRIPT_URL, {
       method: "POST",
-      // 💡 N'ajoutez PAS le Content-Type ici. Laissez le navigateur le faire pour FormData.
-      body: formData
+      // 💡 Utilisez application/json pour envoyer correctement le corps JSON
+      headers: {"Content-Type":"application/json"}, 
+      body: JSON.stringify(payload)
+
     });
 
     const data = await res.json(); // Le script Apps Script doit renvoyer du JSON !
