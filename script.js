@@ -5,7 +5,7 @@
 
 /* ========== CONFIG ========== */
 // URL de ton Apps Script (WebApp)
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwG4ao_D4e87WWQt5K-EhmGYPfZBcEkB2hxV9h2cvYYiO4HprSM1uaYiME6NqYaSxVDyg/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgIBgkQsqHIyk6VCTT2NyE800rwL2BSjrsRCnhNxCeyMCQtz52wjlC_PyMGIddwpzT/exec";
 
 // Heure d'ouverture (9h)
 const HEURE_OUVERTURE = 9;
@@ -210,10 +210,10 @@ document.getElementById("send-answer").onclick = async () => {
 
   try {
     const res = await fetch(SCRIPT_URL, {
-    method: "POST",
-    // 💡 Utiliser text/plain pour éviter la requête OPTIONS / le CORS
-    headers: {"Content-Type":"text/plain"}, 
-    body: JSON.stringify(payload)
+      method: "POST",
+      // 🚨 ABSOLUMENT 'text/plain' pour éviter la requête OPTIONS qui échoue
+      headers: {"Content-Type":"text/plain"}, 
+      body: JSON.stringify(payload)
     });
 
     const data = await res.json();
