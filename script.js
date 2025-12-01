@@ -209,6 +209,22 @@ document.getElementById("to-enigme").onclick = () => {
   setTimeout(()=> inputReponse.focus(), 120);
 };
 
+document.getElementById("btn-indice").onclick = () => {
+  const indice = INDICES[caseOuverte];
+  const bloc = document.getElementById("indice-text");
+
+  if (!indice) {
+    bloc.textContent = "Aucun indice pour ce jour.";
+  } else {
+    bloc.textContent = indice;
+  }
+
+  bloc.classList.remove("hidden");
+  bloc.classList.add("indice-anim");
+  
+  setTimeout(() => bloc.classList.remove("indice-anim"), 400);
+};
+
 /* envoi de la réponse vers Google Sheets (Apps Script) */
 document.getElementById("send-answer").onclick = async () => {
   if (!inputReponse.value.trim()) {
