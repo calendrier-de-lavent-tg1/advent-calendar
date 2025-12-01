@@ -102,6 +102,14 @@ body::after{
   border-radius:12px; padding:20px; position:relative;
   box-shadow: 0 30px 80px rgba(2,6,23,0.6);
 }
+.modal-card {
+  animation: popIn .4s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(.7); opacity:0; }
+  100% { transform: scale(1); opacity:1; }
+}
 
 .modal-close{ position:absolute; right:12px; top:10px; border:none; background:transparent; font-size:20px; cursor:pointer; }
 
@@ -128,4 +136,34 @@ body::after{
 @media (max-width:420px){
   .flake{ width:60px; height:60px; }
   .flake .num{ font-size:18px; }
+}
+.indice-btn {
+  background:#0a84ff;
+  margin-bottom:10px;
+  transition: transform .2s, box-shadow .2s;
+}
+.indice-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+}
+
+.indice-text {
+  font-size: 14px;
+  margin-top: 8px;
+  background: rgba(255,255,255,0.8);
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #0c1a2b;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  opacity: 1;
+}
+
+.indice-anim {
+  animation: fadeInScale .4s ease forwards;
+}
+
+@keyframes fadeInScale {
+  0% { opacity:0; transform:scale(.8); }
+  100% { opacity:1; transform:scale(1); }
 }
