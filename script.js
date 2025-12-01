@@ -348,22 +348,13 @@ document.getElementById("send-answer").onclick = async () => {
   reponse: inputReponse.value.trim()
 
 };
-
-
-
-  try {
-
-    const res = await fetch(SCRIPT_URL, {
-
-      method: "POST",
-
-      headers: {"Content-Type":"application/json"},
-
-      body: JSON.stringify(payload)
-
-    });
-
-
+  try {
+    const res = await fetch(SCRIPT_URL, {
+      method: "POST",
+      // 🚨 ABSOLUMENT 'text/plain' pour éviter la requête OPTIONS qui échoue
+      headers: {"Content-Type":"text/plain"}, 
+      body: JSON.stringify(payload)
+    });
 
     const data = await res.json();
 
