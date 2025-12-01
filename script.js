@@ -5,7 +5,7 @@
 
 /* ========== CONFIG ========== */
 // URL de ton Apps Script (WebApp)
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxUhHxS_hDuo1SK7_-ELVgAswnF_mMboj2dGKIo8hkOsZCyVAjcWrJZ68818Pv-D-8Elg/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgIBgkQsqHIyk6VCTT2NyE800rwL2BSjrsRCnhNxCeyMCQtz52wjlC_PyMGIddwpzT/exec";
 // Heure d'ouverture (10h)
 const HEURE_OUVERTURE = 10;
 // Jours (1..19 sans week-ends)
