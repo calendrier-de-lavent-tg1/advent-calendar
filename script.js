@@ -5,7 +5,7 @@
 
 /* ========== CONFIG ========== */
 // ⚠️ VÉRIFIEZ ET METTEZ À JOUR L'URL DE VOTRE APPS SCRIPT APRÈS CHAQUE DÉPLOIEMENT
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxO_DCGEQHER22dxBA-0yw0xQ2YKgjDvRx0PcwrlgViUmmt1FI1CYfjvFvd7WV-Jix5/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxyOzwBv6t4B4iLHBiN2piedWX_SBGQGKbs5-bHMbD6k9TVr8vJCa-lKAJ0RPdjjiHKxQ/exec";
 // Heure d'ouverture (10h)
 const HEURE_OUVERTURE = 10;
 // Jours (1..19 sans week-ends)
