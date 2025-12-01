@@ -5,24 +5,24 @@
 
 /* ========== CONFIG ========== */
 // URL de ton Apps Script (WebApp)
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzEMtA5tC5VpNjfljlFaD_CeZXRLMA25i9bmJykD1GwjkhIf8g5EwMGcgtuLHOC0-hQoQ/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgIBgkQsqHIyk6VCTT2NyE800rwL2BSjrsRCnhNxCeyMCQtz52wjlC_PyMGIddwpzT/exec";
 
-// Heure d'ouverture (9h)
-const HEURE_OUVERTURE = 9;
+// Heure d'ouverture (ex : 12 = midi)
+const HEURE_OUVERTURE = 12;
 
 // Jours (1..19 sans week-ends)
 const JOURS = [1,2,3,4,5,8,9,10,11,12,15,16,17,18,19];
 
 const ENIGMES = {
-  1:"J'ai un bureau mais je ne suis jamais dedans.. Qui suis-je ?",
-  2:"En hiver, je porte souvent un bonnet, même s'il m'arrive de le perdre. Qui suis-je ?",
-  3:"Je fais toujours attention à mon style. D'ailleurs, mes lunettes sont souvent accordées à mon pull et à mes basket. Qui suis-je ?",
-  4:"Le plus beau déguisement du carnaval ? C'est moi ! Qui suis-je ?",
-  5:"On ne me voit jamais sans un élève accroché à mes basket. Qui suis-je ?",
-  8:" ",
-  9:"J'ai battu un élève à Fifa.. il était doué mais je l'ai eu aux pélantys ! Qui suis-je ?",
-  10:"Aujourd'hui défi particulier, pour l'emporter, il faut trouver où se trouve aumônerie et faire une photo de la salle. Bonne chance !",
-  11:"Grâce à l'intervention de M.Albert, j'ai pu éviter une heure de colle. Qui suis-je ?",
+  1:"Je commence la journée sans effort et termine souvent en musique. Qui suis-je ?",
+  2:"Qu’est-ce qui a des clés mais n’ouvre aucune porte ?",
+  3:"Énigme 3...",
+  4:"Énigme 4...",
+  5:"Énigme 5...",
+  8:"Énigme 8...",
+  9:"Énigme 9...",
+  10:"Énigme 10...",
+  11:"Énigme 11...",
   12:"Énigme 12...",
   15:"Énigme 15...",
   16:"Énigme 16...",
@@ -52,7 +52,7 @@ const POSITIONS = [
 
 /* ========== MODE TEST & ADMIN ========== */
 /* true = mode test activé (simule jour+heure). Mets false en production */
-let MODE_TEST = false;
+let MODE_TEST = true;
 
 /* jour et heure simulés (si MODE_TEST = true) */
 let JOUR_SIMULE = 5;   // change le jour ici pour tester (ou appuie sur "A")
@@ -197,61 +197,22 @@ document.getElementById("to-enigme").onclick = () => {
 
 /* envoi de la réponse vers Google Sheets (Apps Script) */
 document.getElementById("send-answer").onclick = async () => {
-  if (!inputReponse.value.trim()) {
-    msgReponse.textContent = "Entre une réponse.";
-    return;
-  }
+  if (!inputReponse.value.trim()) {
+    msgReponse.textContent = "Entre une réponse.";
+    return;
+  }
 
-  msgReponse.textContent = "Envoi en cours..."; // Feedback visuel
-
-  // 1. Créer les données dans un format Apps Script accepte nativement
-  const formData = new FormData();
-  formData.append('nom', inputNom.value.trim());
-  formData.append('jour', caseOuverte);
-  formData.append('reponse', inputReponse.value.trim());
-
-  // ... dans la fonction send-answer.onclick
-  try {
-    const res = await fetch(SCRIPT_URL, {
-      method: "POST",
-      // 💡 Utilisez application/json pour envoyer correctement le corps JSON
-      headers: {"Content-Type":"application/json"}, 
-      body: JSON.stringify(payload)
-
-    });
-
-    const data = await res.json(); // Le script Apps Script doit renvoyer du JSON !
-
-    if (data.status === "already") {
-      msgReponse.textContent = "Tu as déjà répondu pour ce jour.";
-      return;
-    }
-    if (data.status === "ok") {
-      etapeEnigme.classList.add("hidden");
-      etapeFini.classList.remove("hidden");
-      const fl = document.querySelector(`.flake[data-jour='${caseOuverte}']`);
-      if (fl) { fl.classList.add("passe"); fl.style.pointerEvents = "none"; }
-      return;
-    }
-
-    msgReponse.textContent = "Erreur serveur: " + (data.message || "Réponse non standard.");
-  } catch (err) {
-    console.error("Erreur de connexion Apps Script:", err);
-    msgReponse.textContent = "Erreur de connexion (vérifie l'URL Apps Script et les logs).";
-  }
-};
-
- const payload = {
-  nom: inputNom.value.trim(),
-  jour: caseOuverte,
-  reponse: inputReponse.value.trim()
-};
+  const payload = {
+    name: inputNom.value.trim(),
+    day: caseOuverte,
+    answer: inputReponse.value.trim()
+  };
 
   try {
     const res = await fetch(SCRIPT_URL, {
-      method: "POST",
-      headers: {"Content-Type":"text/plain"}, 
-      body: JSON.stringify(payload)
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify(payload)
     });
 
     const data = await res.json();
