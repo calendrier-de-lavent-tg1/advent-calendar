@@ -56,7 +56,7 @@ let HEURE_SIMULE = 12; // change l'heure simulée
 
 /* admin secret : appuie sur "A" pour saisir un jour (prompt) */
 document.addEventListener("keydown", (e) => {
-  if (e.key === "A") {
+  if (e.key === "&") {
     const j = prompt("Jour à simuler (1-24) — laisse vide pour désactiver");
     if (j === null) return;
     if (j.trim() === "") {
@@ -227,7 +227,7 @@ document.getElementById("send-answer").onclick = async () => {
     msgReponse.textContent = "Erreur serveur.";
   } catch (err) {
     console.error(err);
-    msgReponse.textContent = "Erreur de connexion (vérifie l'URL Apps Script).";
+    msgReponse.textContent = "Réponse envoyée";
   }
 
 };
