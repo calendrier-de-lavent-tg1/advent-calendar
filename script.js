@@ -29,7 +29,7 @@ const ENIGMES = {
 };
 const INDICES = {
   2: "Indice : Je ne suis pas un élève",
-  3: "Indice : Je ne suis pas professeur, on m'appelle Mme..",
+  3: "Indice : Je ne suis pas professeur, mais on m'appelle Mme..",
   5: "Indice : ",
   8: "Indice : ",
   9: "Indice : ",
