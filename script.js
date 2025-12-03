@@ -14,12 +14,12 @@ const ENIGMES = {
   1:"J'ai un bureau mais je ne suis jamais dedans.. Qui suis-je ?",
   2:"Grâce à l'intervention de M.Albert, j'ai pu éviter une heure de colle. Qui suis-je ?",
   3:"En hiver, je porte souvent un bonnet, même s'il m'arrive de le perdre. Qui suis-je ?",
-  4:"Le plus beau déguisement du carnaval ? C'est moi ! Qui suis-je ?",
-  5:"On ne me voit jamais sans un élève accroché à mes basket. Qui suis-je ?",
+  4:" ",
+  5:" ",
   8:"",
-  9:"J'ai battu un élève à Fifa.. il était doué mais je l'ai eu aux pélantys ! Qui suis-je ?",
-  10:"Aujourd'hui défi particulier, pour l'emporter, il faut trouver où se trouve aumônerie et faire une photo de la salle. Bonne chance !",
-  11:"Je fais toujours attention à mon style. D'ailleurs, mes lunettes sont souvent accordées à mon pull et à mes basket. Qui suis-je ?",
+  9:" ",
+  10:" ",
+  11:" ",
   12:"Énigme 12...",
   15:"Énigme 15...",
   16:"Énigme 16...",
@@ -29,6 +29,7 @@ const ENIGMES = {
 };
 const INDICES = {
   2: "Indice : Je ne suis pas un élève",
+  3: "Indice : Je ne suis pas professeur, on m'appelle Mme..
   4: "Indice : ",
   5: "Indice : ",
   8: "Indice : ",
