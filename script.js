@@ -15,7 +15,7 @@ const ENIGMES = {
   2:"Grâce à l'intervention de M.Albert, j'ai pu éviter une heure de colle. Qui suis-je ?",
   3:"En hiver, je porte souvent un bonnet, même s'il m'arrive de le perdre. Qui suis-je ?",
   4:"Quand j'étais petit, j'arrivais tout le temps en retard, parce que j'aimais bien qu'on me remarque ! Qui suis-je ?",
-  5:" ",
+  5:"J'ai contribué à la chute du mur de Berlin. Qui suis-je ?",
   8:" ",
   9:" ",
   10:" ",
