@@ -17,7 +17,7 @@ const ENIGMES = {
   4:"Quand j'étais petit, j'arrivais tout le temps en retard, parce que j'aimais bien qu'on me remarque ! Qui suis-je ?",
   5:"J'ai contribué à la chute du mur de Berlin. Qui suis-je ?",
   8:"Je fais toujours attention à mon style. D'ailleurs, mes lunettes sont souvent accordées a mon pull et à mes basquettes. Qui suis-je ?",
-  9:"Aujourd'hui, jour particulier ! Donné le numéro de la salle de l'aumônerie. ",
+  9:"Aujourd'hui, jour particulier ! Donné ce qui est inscrit sur la porte de l'aumônerie. ",
   10:" ",
   11:" ",
   12:"Énigme 12...",
