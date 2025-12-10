@@ -31,7 +31,7 @@ const INDICES = {
   2: "Indice : Je ne suis pas un élève",
   3: "Indice : Je ne suis pas professeur, mais on m'appelle Mme..",
   4: "Indice : Je suis un élève",
-  10: "Indice : ",
+  10: "Indice : Je ne suis pas un élève",
   11: "Indice : ",
   12: "Indice : ",
   15: "Indice : ",
