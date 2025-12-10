@@ -18,7 +18,7 @@ const ENIGMES = {
   5:"J'ai contribué à la chute du mur de Berlin. Qui suis-je ?",
   8:"Je fais toujours attention à mon style. D'ailleurs, mes lunettes sont souvent accordées a mon pull et à mes basquettes. Qui suis-je ?",
   9:"Aujourd'hui, jour particulier ! Donné le numéro de la salle de l'aumônerie. ",
-  10:" ",
+  10:"Le plus beau déguisement du carnaval ? C'est moi ! Qui suis-je ?",
   11:" ",
   12:"Énigme 12...",
   15:"Énigme 15...",
