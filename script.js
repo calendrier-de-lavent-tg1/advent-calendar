@@ -21,7 +21,7 @@ const ENIGMES = {
   10:"Le plus beau déguisement du carnaval ? C'est moi ! Qui suis-je ?",
   11:" ",
   12:"J'ai battu un élève à Fifa.. il était doué mais je l'ai eu aux pénaltys ! Qui suis-je ?",
-  15:"Énigme 15...",
+  15:"Je viens d'abandonner une pratique sportive en équipe pour une pratique sportive individuelle pour laquelle l'adage "pour voyager loin il faut ménager sa monture" est plus qu'approprié. Qui suis-je ?",
   16:"Énigme 16...",
   17:"Énigme 17...",
   18:"Énigme 18...",
