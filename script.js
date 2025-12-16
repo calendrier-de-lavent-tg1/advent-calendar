@@ -22,7 +22,7 @@ const ENIGMES = {
   11:" ",
   12:"J'ai battu un élève à Fifa.. il était doué mais je l'ai eu aux pénaltys ! Qui suis-je ?",
   15:"Je viens d'abandonner une pratique sportive en équipe pour une pratique sportive individuelle pour laquelle l'adage 'pour voyager loin il faut ménager sa monture' est plus qu'approprié. Qui suis-je ?",
-  16:"Énigme 16...",
+  16:"Je viens d'abandonner une pratique sportive en équipe pour une pratique sportive individuelle pour laquelle l'adage 'pour voyager loin il faut ménager sa monture' est plus qu'approprié. Qui suis-je ?",
   17:"Énigme 17...",
   18:"Énigme 18...",
   19:"Énigme 19..."
@@ -34,7 +34,7 @@ const INDICES = {
   10: "Indice : Je ne suis pas un élève",
   11: "Indice : ",
   15: "Indice : ",
-  16: "Indice : ",
+  16: "Indice : Je ne suis pas un élève",
   17: "Indice : ",
   18: "Indice : ",
   19: "Indice : "
